@@ -1,0 +1,92 @@
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+                      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Add a news</title>
+</head>
+<body>
+
+    <div>
+ <form enctype="multipart/form-data"
+                        action="#" th:action="@{/directories/certificateTitleType}"
+                        th:object="${itemForUpdate}"
+                        method="post">
+
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <th>Saving news</th>
+            </thead>
+
+            <tr>
+                <td>
+
+                    <input type="hidden" name="id" th:field="*{id}">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">Name</span>
+                      </div>
+                      <input type="text" class="form-control" id="basic-url" name="name" th:field="*{name}"
+                                aria-describedby="basic-addon3" maxlength="500">
+
+                    </div>
+
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                <button type="submit" class="btn btn-dark">Save</button>
+
+                </td>
+            </tr>
+        </table>
+</form>
+
+
+
+<!--form action="#" id="searchForm" th:action="@{/news/search/}" th:object="${pattern}" method="post"-->
+
+    <table class="table table-bordered table-hover table-striped"
+           data-pagination="true"
+           data-side-pagination="server">
+        <thead>
+        <tr class="filters">
+            <!--input type="hidden" th:field="*{answer}" id="answer"/>
+            <input type="hidden" th:field="*{statusRequest}" id="statusRequest"/>
+            <input type="hidden" th:field="*{pageSize}" id="pageSize"/>
+            <input type="hidden" th:field="*{page}" id="page"/-->
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}" style="max-width: 50px;"></td>
+            <td style="max-width: 10px;">
+
+                <a th:href="@{'/directories/certificateTitleType/?itemId=' + ${item.id}}"> <i class="fa fa-edit"></i> </a>
+
+
+                     <a th:href="@{'/directories/delete/' + ${item.id}}"><i class="fa fa-trash"></i></a>
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+<!--/form-->
+
+
+        <a href="/" class="btn btn-primary">Main menu</a>
+    </div>
+
+</body>
+</html>
